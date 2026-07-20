@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | AI-Powered Endangered Species Population Predictor</title>
+    
+    <!-- Meta SEO -->
+    <meta name="description" content="Engineering final-year project dashboard for predicting endangered species population trends, risk assessment, and conservation recommending.">
+    <meta name="author" content="Engineering Student">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    
+    <!-- Font Awesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!-- Custom Style System -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="app-container">
+        
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="brand-title">
+                    <i class="fa-solid fa-leaf"></i>
+                    <span>Species Predictor</span>
+                </div>
+            </div>
+            
+            <ul class="sidebar-menu">
+                <li class="menu-item active">
+                    <a href="#" class="menu-link">
+                        <i class="fa-solid fa-chart-line"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="#" class="menu-link">
+                        <i class="fa-solid fa-paw"></i>
+                        <span>Species</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="#" class="menu-link">
+                        <i class="fa-solid fa-brain"></i>
+                        <span>Population Prediction</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="#" class="menu-link">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                        <span>Risk Analysis</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="#" class="menu-link">
+                        <i class="fa-solid fa-file-invoice-dollar"></i>
+                        <span>Reports</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="#" class="menu-link">
+                        <i class="fa-solid fa-sliders"></i>
+                        <span>Settings</span>
+                    </a>
+                </li>
+                <li class="menu-item mt-auto">
+                    <a href="#" class="menu-link text-danger">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        <span>Logout</span>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="sidebar-footer">
+                <div class="user-profile-sm">
+                    <div class="avatar-initials">AJ</div>
+                    <div class="text-truncate">
+                        <h6 class="mb-0 text-white text-truncate" style="font-size: 0.85rem;">Aditi J</h6>
+                        <small class="text-muted text-truncate d-block" style="font-size: 0.7rem;">Lead Conservationist</small>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Dashboard Viewport -->
+        <main class="main-content">
+            
+            <!-- Top Navigation Bar -->
+            <header class="top-navbar">
+                <div class="navbar-left">
+                    <button class="sidebar-toggle-btn" id="sidebar-toggle" aria-label="Toggle Sidebar">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                    <span class="d-none d-lg-inline-block fw-bold font-heading me-3" style="font-size: 1.1rem; color: var(--accent-teal); letter-spacing: 0.2px;">
+                        AI-Powered Endangered Species Population Predictor
+                    </span>
+                    <div class="search-wrapper d-none d-md-block">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" class="search-input" placeholder="Search resources, reports...">
+                    </div>
+                </div>
+
+                <div class="navbar-right">
+                    <!-- Light/Dark Mode Switcher -->
+                    <button class="theme-toggle-btn" id="theme-toggle" title="Toggle Light/Dark Theme">
+                        <i class="fa-solid fa-moon"></i>
+                    </button>
+
+                    <!-- Notifications Indicator -->
+                    <button class="notification-btn" id="notification-trigger" title="Notifications">
+                        <i class="fa-solid fa-bell"></i>
+                        <span class="notification-badge"></span>
+                    </button>
+
+                    <!-- User Account Quick Summary -->
+                    <button class="profile-dropdown-btn d-none d-sm-flex">
+                        <div class="avatar-initials">AJ</div>
+                        <div class="profile-info">
+                            <p class="profile-name">Aditi J</p>
+                            <p class="profile-role">Admin Account</p>
+                        </div>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Welcome/Date Section -->
+            <section class="mb-4">
+                <div class="row align-items-center">
+                    <div class="col-md-8">
+                        <h1 class="mb-1 text-primary-theme" style="font-size: 2rem;">Welcome Back, Aditi!</h1>
+                        <p class="text-secondary mb-0">Track ecological indices, forecast populations, and assess extinction models.</p>
+                    </div>
+                    <div class="col-md-4 text-md-end mt-2 mt-md-0">
+                        <div class="d-inline-flex align-items-center px-3 py-2 rounded-3 bg-white border border-light" style="box-shadow: var(--card-shadow);">
+                            <i class="fa-regular fa-calendar-check text-emerald me-2"></i>
+                            <span id="current-date" class="fw-semibold text-secondary" style="font-size: 0.9rem;">Monday, July 20, 2026</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Dashboard Statistics Cards Grid -->
+            <section class="stat-card-wrapper">
+                
+                <!-- Card 1: Total Species -->
+                <div class="custom-card stat-card">
+                    <div class="stat-header">
+                        <span class="stat-title">Total Species</span>
+                        <div class="stat-icon-box box-blue">
+                            <i class="fa-solid fa-paw"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="stat-value">120</div>
+                        <div class="stat-trend trend-up">
+                            <i class="fa-solid fa-arrow-up"></i>
+                            <span>+4 new additions</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: Endangered Species -->
+                <div class="custom-card stat-card">
+                    <div class="stat-header">
+                        <span class="stat-title">Endangered Species</span>
+                        <div class="stat-icon-box box-amber">
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="stat-value">42</div>
+                        <div class="stat-trend trend-neutral">
+                            <i class="fa-solid fa-minus"></i>
+                            <span>Stable count</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3: Critical Species -->
+                <div class="custom-card stat-card">
+                    <div class="stat-header">
+                        <span class="stat-title">Critical Species</span>
+                        <div class="stat-icon-box box-coral">
+                            <i class="fa-solid fa-radiation"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="stat-value">18</div>
+                        <div class="stat-trend trend-down">
+                            <i class="fa-solid fa-arrow-up"></i>
+                            <span>+2 high risk alert</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4: Predictions Generated -->
+                <div class="custom-card stat-card">
+                    <div class="stat-header">
+                        <span class="stat-title">Predictions Made</span>
+                        <div class="stat-icon-box box-emerald">
+                            <i class="fa-solid fa-microchip"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="stat-value">320</div>
+                        <div class="stat-trend trend-up">
+                            <i class="fa-solid fa-arrow-up"></i>
+                            <span>+24 this week</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 5: High Risk Species -->
+                <div class="custom-card stat-card">
+                    <div class="stat-header">
+                        <span class="stat-title">High Risk Species</span>
+                        <div class="stat-icon-box box-teal">
+                            <i class="fa-solid fa-biohazard"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="stat-value">15</div>
+                        <div class="stat-trend trend-down">
+                            <i class="fa-solid fa-arrow-down"></i>
+                            <span>-1 rec. applied</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 6: Model Accuracy -->
+                <div class="custom-card stat-card">
+                    <div class="stat-header">
+                        <span class="stat-title">Model Accuracy</span>
+                        <div class="stat-icon-box box-emerald">
+                            <i class="fa-solid fa-square-poll-vertical"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="stat-value">92%</div>
+                        <div class="stat-trend trend-up">
+                            <i class="fa-solid fa-arrow-up-right-dots"></i>
+                            <span>R² confidence high</span>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- Quick Action Buttons Section -->
+            <section class="mb-4">
+                <h5 class="mb-3 text-secondary">Quick Command Shortcuts</h5>
+                <div class="action-btn-grid">
+                    <button class="action-btn" id="action-predict">
+                        <i class="fa-solid fa-circle-nodes text-emerald"></i>
+                        <span>Predict Population</span>
+                    </button>
+                    <button class="action-btn" id="action-upload">
+                        <i class="fa-solid fa-file-csv text-blue"></i>
+                        <span>Upload Dataset</span>
+                    </button>
+                    <button class="action-btn" id="action-report">
+                        <i class="fa-solid fa-file-pdf text-coral"></i>
+                        <span>Generate Report</span>
+                    </button>
+                    <button class="action-btn" id="action-species">
+                        <i class="fa-solid fa-folder-open text-amber"></i>
+                        <span>View Species Catalog</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Charts Analysis Grid -->
+            <section class="charts-grid">
+                
+                <!-- Chart 1: Population Trend -->
+                <div class="custom-card">
+                    <h5 class="card-title mb-1 text-primary-theme">Population Trend Analysis</h5>
+                    <p class="text-muted mb-3" style="font-size: 0.8rem;">Historical baseline vs ML population forecast (Bengal Tiger example)</p>
+                    <div class="chart-container">
+                        <canvas id="populationTrendChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Chart 2: Species Comparison -->
+                <div class="custom-card">
+                    <h5 class="card-title mb-1 text-primary-theme">Species Count Comparison</h5>
+                    <p class="text-muted mb-3" style="font-size: 0.8rem;">Current population vs predicted population in 5 years (Log Scale)</p>
+                    <div class="chart-container">
+                        <canvas id="speciesComparisonChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Chart 3: Risk Distribution -->
+                <div class="custom-card">
+                    <h5 class="card-title mb-1 text-primary-theme">Extinction Risk Allocation</h5>
+                    <p class="text-muted mb-3" style="font-size: 0.8rem;">Percentage breakdown of global monitored species classifications</p>
+                    <div class="chart-container">
+                        <canvas id="riskDistributionChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Chart 4: Environmental Threats -->
+                <div class="custom-card">
+                    <h5 class="card-title mb-1 text-primary-theme">Threat Factor Profile</h5>
+                    <p class="text-muted mb-3" style="font-size: 0.8rem;">Environmental pressure indices (Radar scale 0 - 100)</p>
+                    <div class="chart-container">
+                        <canvas id="environmentalImpactChart"></canvas>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- Table & Timeline Details Row -->
+            <section class="row g-4 mb-4">
+                
+                <!-- High Risk Species Table -->
+                <div class="col-xl-8">
+                    <div class="custom-card h-100">
+                        <div class="d-flex flex-wrap align-items-center justify-content-between mb-3 gap-2">
+                            <div>
+                                <h5 class="mb-1 text-primary-theme">Critical Threat Index Table</h5>
+                                <p class="text-muted mb-0" style="font-size: 0.8rem;">Monitored species with high risk probability</p>
+                            </div>
+                            <div class="search-wrapper" style="width: 240px;">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                                <input type="text" id="table-search-input" class="search-input" placeholder="Search high-risk species...">
+                            </div>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="table custom-table" id="high-risk-table">
+                                <thead>
+                                    <tr>
+                                        <th>Species Name</th>
+                                        <th>Current Pop.</th>
+                                        <th>Predicted (5yr)</th>
+                                        <th>Threat Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="fw-semibold">Bengal Tiger</div>
+                                            <small class="text-muted">Panthera tigris</small>
+                                        </td>
+                                        <td>3,850</td>
+                                        <td>4,320</td>
+                                        <td><span class="badge-custom badge-endangered">Endangered</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline-success rounded-pill px-3 py-1" onclick="showToast('Bengal Tiger Info', 'Opening detail dossier for Panthera tigris', 'info')">
+                                                <i class="fa-solid fa-eye me-1"></i> View
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="fw-semibold">Asiatic Lion</div>
+                                            <small class="text-muted">Panthera leo persica</small>
+                                        </td>
+                                        <td>674</td>
+                                        <td>710</td>
+                                        <td><span class="badge-custom badge-vulnerable">Vulnerable</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline-success rounded-pill px-3 py-1" onclick="showToast('Asiatic Lion Info', 'Opening detail dossier for Panthera leo persica', 'info')">
+                                                <i class="fa-solid fa-eye me-1"></i> View
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="fw-semibold">Black Rhino</div>
+                                            <small class="text-muted">Diceros bicornis</small>
+                                        </td>
+                                        <td>5,630</td>
+                                        <td>5,210</td>
+                                        <td><span class="badge-custom badge-critical">Critically Endangered</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline-success rounded-pill px-3 py-1" onclick="showToast('Black Rhino Info', 'Opening detail dossier for Diceros bicornis', 'info')">
+                                                <i class="fa-solid fa-eye me-1"></i> View
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="fw-semibold">Snow Leopard</div>
+                                            <small class="text-muted">Panthera uncia</small>
+                                        </td>
+                                        <td>4,000</td>
+                                        <td>3,850</td>
+                                        <td><span class="badge-custom badge-vulnerable">Vulnerable</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline-success rounded-pill px-3 py-1" onclick="showToast('Snow Leopard Info', 'Opening detail dossier for Panthera uncia', 'info')">
+                                                <i class="fa-solid fa-eye me-1"></i> View
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="fw-semibold">Red Panda</div>
+                                            <small class="text-muted">Ailurus fulgens</small>
+                                        </td>
+                                        <td>10,000</td>
+                                        <td>9,100</td>
+                                        <td><span class="badge-custom badge-endangered">Endangered</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline-success rounded-pill px-3 py-1" onclick="showToast('Red Panda Info', 'Opening detail dossier for Ailurus fulgens', 'info')">
+                                                <i class="fa-solid fa-eye me-1"></i> View
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="fw-semibold">African Elephant</div>
+                                            <small class="text-muted">Loxodonta africana</small>
+                                        </td>
+                                        <td>415,000</td>
+                                        <td>395,000</td>
+                                        <td><span class="badge-custom badge-vulnerable">Vulnerable</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline-success rounded-pill px-3 py-1" onclick="showToast('African Elephant Info', 'Opening detail dossier for Loxodonta africana', 'info')">
+                                                <i class="fa-solid fa-eye me-1"></i> View
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Table Pagination Mockup -->
+                        <nav class="mt-3">
+                            <ul class="pagination pagination-sm justify-content-end mb-0">
+                                <li class="page-item disabled"><span class="page-link">Previous</span></li>
+                                <li class="page-item active"><span class="page-link" style="background-color: var(--accent-emerald); border-color: var(--accent-emerald);">1</span></li>
+                                <li class="page-item"><a class="page-link text-emerald" href="#" onclick="event.preventDefault(); showToast('Pagination', 'Table dataset page 2 demo.', 'info')">2</a></li>
+                                <li class="page-item"><a class="page-link text-emerald" href="#" onclick="event.preventDefault(); showToast('Pagination', 'Table dataset page 3 demo.', 'info')">3</a></li>
+                                <li class="page-item"><a class="page-link text-emerald" href="#" onclick="event.preventDefault(); showToast('Pagination', 'Table dataset page 2 demo.', 'info')">Next</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+
+                <!-- Recent Activities Timeline -->
+                <div class="col-xl-4">
+                    <div class="custom-card h-100">
+                        <h5 class="card-title mb-1 text-primary-theme">Recent Activity Timeline</h5>
+                        <p class="text-muted mb-4" style="font-size: 0.8rem;">Logs of workspace updates and prediction runs</p>
+
+                        <div class="activity-timeline">
+                            <div class="timeline-item dot-blue">
+                                <span class="timeline-dot"></span>
+                                <div class="timeline-content">
+                                    <span class="timeline-time">Just Now</span>
+                                    <p class="timeline-text">Bengal Tiger dataset file `tiger_data_2026.csv` uploaded successfully.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item dot-emerald">
+                                <span class="timeline-dot"></span>
+                                <div class="timeline-content">
+                                    <span class="timeline-time">3 hours ago</span>
+                                    <p class="timeline-text">XGBoost prediction model trained. Overall accuracy checked at 92.4%.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item dot-coral">
+                                <span class="timeline-dot"></span>
+                                <div class="timeline-content">
+                                    <span class="timeline-time">Yesterday</span>
+                                    <p class="timeline-text">Black Rhino risk forecast generated. Status escalated to Critically Endangered.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item dot-amber">
+                                <span class="timeline-dot"></span>
+                                <div class="timeline-content">
+                                    <span class="timeline-time">2 days ago</span>
+                                    <p class="timeline-text">Ecology PDF report downloaded for Red Panda population projection models.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item dot-blue">
+                                <span class="timeline-dot"></span>
+                                <div class="timeline-content">
+                                    <span class="timeline-time">5 days ago</span>
+                                    <p class="timeline-text">New species added: Snow Leopard (Panthera uncia) by researcher Aditi J.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- Conservation Recommendation Panel -->
+            <section class="mb-4">
+                <div class="custom-card">
+                    <h5 class="card-title mb-1 text-primary-theme">AI Conservation Recommendations</h5>
+                    <p class="text-muted mb-4" style="font-size: 0.8rem;">Real-time ecological suggestions generated from species threat profiles</p>
+                    
+                    <div class="row g-3">
+                        <div class="col-md-6 col-lg-4">
+                            <div class="rec-card border-blue">
+                                <div class="d-flex align-items-center gap-2 mb-2">
+                                    <i class="fa-solid fa-shield-cat text-blue" style="font-size: 1.1rem;"></i>
+                                    <h6 class="rec-title">Protect Habitats</h6>
+                                </div>
+                                <p class="rec-desc">Expand nature sanctuaries and wildlife corridors by 15% to sustain migration and breeding corridors.</p>
+                                <a href="#" class="btn btn-link btn-sm text-blue p-0 font-heading fw-semibold rec-readmore-btn" data-rec-name="Protect Habitats">Read Policy Handbook <i class="fa-solid fa-arrow-right-long ms-1" style="font-size: 0.75rem;"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-4">
+                            <div class="rec-card border-emerald">
+                                <div class="d-flex align-items-center gap-2 mb-2">
+                                    <i class="fa-solid fa-tree text-emerald" style="font-size: 1.1rem;"></i>
+                                    <h6 class="rec-title">Reduce Deforestation</h6>
+                                </div>
+                                <p class="rec-desc">Enforce satellite-monitored buffers in buffer zone forest districts to limit illegal commercial logging.</p>
+                                <a href="#" class="btn btn-link btn-sm text-emerald p-0 font-heading fw-semibold rec-readmore-btn" data-rec-name="Reduce Deforestation">Read Policy Handbook <i class="fa-solid fa-arrow-right-long ms-1" style="font-size: 0.75rem;"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-4">
+                            <div class="rec-card border-coral">
+                                <div class="d-flex align-items-center gap-2 mb-2">
+                                    <i class="fa-solid fa-user-ninja text-coral" style="font-size: 1.1rem;"></i>
+                                    <h6 class="rec-title">Anti-Poaching Patrols</h6>
+                                </div>
+                                <p class="rec-desc">Deploy thermal imaging camera nets and double-frequency ranger patrols in hotspots to halt poaching loops.</p>
+                                <a href="#" class="btn btn-link btn-sm text-coral p-0 font-heading fw-semibold rec-readmore-btn" data-rec-name="Anti-Poaching Patrols">Read Policy Handbook <i class="fa-solid fa-arrow-right-long ms-1" style="font-size: 0.75rem;"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-4">
+                            <div class="rec-card border-amber">
+                                <div class="d-flex align-items-center gap-2 mb-2">
+                                    <i class="fa-solid fa-satellite-dish text-amber" style="font-size: 1.1rem;"></i>
+                                    <h6 class="rec-title">Wildlife Monitoring</h6>
+                                </div>
+                                <p class="rec-desc">Install satellite telemetry collars and AI-powered bio-acoustic microphones to capture population density.</p>
+                                <a href="#" class="btn btn-link btn-sm text-amber p-0 font-heading fw-semibold rec-readmore-btn" data-rec-name="Wildlife Monitoring">Read Policy Handbook <i class="fa-solid fa-arrow-right-long ms-1" style="font-size: 0.75rem;"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-4">
+                            <div class="rec-card border-blue">
+                                <div class="d-flex align-items-center gap-2 mb-2">
+                                    <i class="fa-solid fa-users-viewfinder text-blue" style="font-size: 1.1rem;"></i>
+                                    <h6 class="rec-title">Community Awareness</h6>
+                                </div>
+                                <p class="rec-desc">Introduce educational programs and eco-tourism profit sharing for human settlements near natural reserves.</p>
+                                <a href="#" class="btn btn-link btn-sm text-blue p-0 font-heading fw-semibold rec-readmore-btn" data-rec-name="Community Awareness">Read Policy Handbook <i class="fa-solid fa-arrow-right-long ms-1" style="font-size: 0.75rem;"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-4">
+                            <div class="rec-card border-coral">
+                                <div class="d-flex align-items-center gap-2 mb-2">
+                                    <i class="fa-solid fa-smog text-coral" style="font-size: 1.1rem;"></i>
+                                    <h6 class="rec-title">Pollution Control</h6>
+                                </div>
+                                <p class="rec-desc">Impose severe ecological taxes on industrial waste discharge points bordering riverine wildlife habitats.</p>
+                                <a href="#" class="btn btn-link btn-sm text-coral p-0 font-heading fw-semibold rec-readmore-btn" data-rec-name="Pollution Control">Read Policy Handbook <i class="fa-solid fa-arrow-right-long ms-1" style="font-size: 0.75rem;"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sticky Toast Container -->
+            <div id="toast-container" class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 9999;"></div>
+
+
+
+        </main>
+    </div>
+
+    <!-- Bootstrap 5 Bundle JS with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    
+    <!-- Chart.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Custom Javascripts -->
+    <script src="js/dashboard.js"></script>
+    <script src="js/charts.js"></script>
+</body>
+</html>
