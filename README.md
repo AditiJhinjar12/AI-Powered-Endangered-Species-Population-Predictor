@@ -20,7 +20,7 @@ An AI-driven web application that predicts future population trends of endangere
 * **Frontend:** HTML, CSS, Bootstrap 5, JavaScript
 * **Backend:** Python, Flask
 * **Machine Learning:** Pandas, NumPy, Scikit-learn (Random Forest, XGBoost, Linear Regression), TensorFlow/Keras (optional)
-* **Database:** SQLite / MySQL
+* **Database:** Supabase
 * **Visualization:** Chart.js
 * **Version Control:** Git & GitHub
 
